@@ -1,0 +1,31 @@
+{
+  "name": "q",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "snowpack dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@snowpack/plugin-react-refresh": "^2.5.0",
+    "snowpack": "^3.8.8"
+  },
+  "dependencies": {
+    "eventemitter3": "^4.0.7",
+    "fbemitter": "^3.0.0",
+    "navigo": "^8.11.1",
+    "preact": "^10.5.15"
+  },
+  "plugins": [
+    "[@snowpack/plugin-react-refresh]",
+    [
+      "transform-react-jsx",
+      {
+        "pragma": "h"
+      }
+    ]
+  ]
+}
