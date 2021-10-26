@@ -3,41 +3,24 @@ import { useContext, useState } from "preact/hooks";
 // import { todoContext, trashContext } from "../helpers/Context";
 import { Button } from "../shared/sharedComponents";
 import { arrowHandler } from "../helpers/helpers";
-import Emitter from "../Eemmiter";
+import EventEmitter from "../helpers/EventEmitter";
+
 // import { deleteHandler } from "../helpers/helpers";
 // import emitter from "../Eemmiter";
 
-function Todo({ text, todo, todos, setTodos, setInputText, id }){
+function Todo({ text, todo, todos, setTodos, setInputText, id }) {
   // const { todos, setTodos } = useContext(todoContext);
   // const { trashTodos, setTrashTodos } = useContext(trashContext);
-  const [example, setExample] = useState(
-    ""
-  )
+  const [example, setExample] = useState("");
 
   const deleteRamp = () => {
     let filtered = todos.filter((t) => t.id !== todo.id);
 
-
-    // setInputText={setInputText}
-    // todos={todos}
-    // setTodos={setTodos}
-    // key={todo.id}
-    // id={todo.id}
-    // todo={todo}
-    // text={todo.text}
-    
     setTodos(filtered);
-   
-  Emitter.emit("trash todos", 
- example = todo.text
-  //  key: todo.id,
-  //  id:todo.id,
-  //  todo:todo,
-  //  todos:todos,
-  //  setTodos:setTodos
-  
-  )
-
+    EventEmitter.emit("NewLog", {
+      text: "Hi from Event Emmiter",
+      createat: new Date(),
+    });
   };
 
   return (
@@ -60,10 +43,7 @@ function Todo({ text, todo, todos, setTodos, setInputText, id }){
         )
       ) : (
         <Button
-        fn={(e) =>deleteRamp()
-
-
-        }
+          fn={(e) => deleteRamp()}
           // fn={(e) =>
           //   deleteHandler(
           //     e,
@@ -103,11 +83,7 @@ function Todo({ text, todo, todos, setTodos, setInputText, id }){
         )
       ) : (
         <Button
-        fn={(e) =>deleteRamp()
-
-
-        }
-
+          fn={(e) => deleteRamp()}
           // fn={(e) =>
           //   deleteHandler(
           //     e,
@@ -127,6 +103,6 @@ function Todo({ text, todo, todos, setTodos, setInputText, id }){
       )}
     </div>
   );
-};
+}
 
 export default Todo;

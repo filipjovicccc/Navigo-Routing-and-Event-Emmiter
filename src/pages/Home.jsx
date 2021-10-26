@@ -13,11 +13,11 @@ import { List } from "../shared/sharedComponents";
 
 function Home() {
   const [inputText, setInputText] = useState("");
-//   const { todos, setTodos } = useContext(todoContext);
-  const [todos, setTodos] = useState([])
+  //   const { todos, setTodos } = useContext(todoContext);
+  const [todos, setTodos] = useState([]);
   const [variableAlert, setVariableAlert] = useState("");
-//   const { trashTodos, setTrashTodos } = useContext(trashContext);
-   
+  //   const { trashTodos, setTrashTodos } = useContext(trashContext);
+
   const submitTodoHendler = (e) => {
     e.preventDefault();
     if (inputText === "") {
@@ -71,6 +71,7 @@ function Home() {
       />
 
       <div className="variable">{variableAlert}</div>
+      <button>Click me please bro!</button>
       <div className="wrapper">
         <List title="TO DO">
           {filteredList(todos, "DO").map((todo) => (
