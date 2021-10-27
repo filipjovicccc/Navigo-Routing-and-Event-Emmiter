@@ -1,10 +1,7 @@
 import { h } from "preact";
-import { useState } from "preact/hooks";
 import { Button } from "../shared/sharedComponents";
 import { arrowHandler } from "../helpers/helpers";
 import EventEmitter from "../helpers/EventEmitter";
-
-// import { deleteHandler } from "../helpers/helpers";
 
 function Todo({ text, todo, todos, setTodos, setInputText, id }) {
   const deleteRamp = () => {

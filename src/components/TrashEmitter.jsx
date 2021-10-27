@@ -13,9 +13,13 @@ function TrashEmitter(id) {
     };
   });
   const [logs, setLogs] = useState([]);
+
+  const example = logs.map((exmp) => exmp);
+
+  const check = example[0];
+
   const deleteBtn = () => {
-    let filtered = logs.filter((t) => t.id !== logs.id);
-    setLogs(filtered);
+    setLogs(logs.filter((t) => t.id !== check.id));
   };
   return (
     <div>
