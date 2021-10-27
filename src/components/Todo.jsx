@@ -1,25 +1,19 @@
 import { h } from "preact";
-import { useContext, useState } from "preact/hooks";
-// import { todoContext, trashContext } from "../helpers/Context";
+import { useState } from "preact/hooks";
 import { Button } from "../shared/sharedComponents";
 import { arrowHandler } from "../helpers/helpers";
 import EventEmitter from "../helpers/EventEmitter";
 
 // import { deleteHandler } from "../helpers/helpers";
-// import emitter from "../Eemmiter";
 
 function Todo({ text, todo, todos, setTodos, setInputText, id }) {
-  // const { todos, setTodos } = useContext(todoContext);
-  // const { trashTodos, setTrashTodos } = useContext(trashContext);
-  const [example, setExample] = useState("");
-
   const deleteRamp = () => {
     let filtered = todos.filter((t) => t.id !== todo.id);
 
     setTodos(filtered);
     EventEmitter.emit("NewLog", {
-      text: "Hi from Event Emmiter",
-      createat: new Date(),
+      text: todo.text,
+      key: todo.id,
     });
   };
 
@@ -44,19 +38,6 @@ function Todo({ text, todo, todos, setTodos, setInputText, id }) {
       ) : (
         <Button
           fn={(e) => deleteRamp()}
-          // fn={(e) =>
-          //   deleteHandler(
-          //     e,
-          //     id,
-          //     todos,
-          //     todo,
-          //     setTodos,
-          //     setTrashTodos,
-          //     trashTodos,
-          //     text,
-          //     setInputText
-          //   )
-          // }
           customClass="trash-btn"
           arrow="fas fa-trash"
         />
@@ -84,19 +65,6 @@ function Todo({ text, todo, todos, setTodos, setInputText, id }) {
       ) : (
         <Button
           fn={(e) => deleteRamp()}
-          // fn={(e) =>
-          //   deleteHandler(
-          //     e,
-          //     id,
-          //     todos,
-          //     todo,
-          //     setTodos,
-          //     setTrashTodos,
-          //     trashTodos,
-          //     text,
-          //     setInputText
-          //   )
-          // }
           customClass="trash-btn"
           arrow="fas fa-trash"
         />

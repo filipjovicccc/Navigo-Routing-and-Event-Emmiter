@@ -1,22 +1,18 @@
 import { h } from "preact";
 import "./Home.css";
 
-import { useState, useEffect, useContext } from "preact/hooks";
+import { useState, useEffect,} from "preact/hooks";
 
 import Form from "../components/Form";
 
 import Todo from "../components/Todo";
 
-// import { trashContext, todoContext } from "../helpers/Context";
-
 import { List } from "../shared/sharedComponents";
 
 function Home() {
   const [inputText, setInputText] = useState("");
-  //   const { todos, setTodos } = useContext(todoContext);
   const [todos, setTodos] = useState([]);
   const [variableAlert, setVariableAlert] = useState("");
-  //   const { trashTodos, setTrashTodos } = useContext(trashContext);
 
   const submitTodoHendler = (e) => {
     e.preventDefault();
@@ -63,15 +59,13 @@ function Home() {
       <header>
         <h1>Todo List </h1>
       </header>
-
       <Form
         inputText={inputText}
         setInputText={setInputText}
         submitTodoHendler={submitTodoHendler}
       />
-
       <div className="variable">{variableAlert}</div>
-      <button>Click me please bro!</button>
+
       <div className="wrapper">
         <List title="TO DO">
           {filteredList(todos, "DO").map((todo) => (
@@ -83,7 +77,6 @@ function Home() {
               text={todo.text}
               id={todo.id}
               setInputText={setInputText}
-              // setTrashTodos={setTrashTodos}
             />
           ))}
         </List>
@@ -109,8 +102,6 @@ function Home() {
               todos={todos}
               text={todo.text}
               setInputText={setInputText}
-              // trashTodos={trashTodos}
-              // setTrashTodos={setTrashTodos}
             />
           ))}
         </List>
