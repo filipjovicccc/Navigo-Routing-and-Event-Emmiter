@@ -33,3 +33,4 @@ function TrashEmitter(id) {
   );
 }
 export default TrashEmitter;
+

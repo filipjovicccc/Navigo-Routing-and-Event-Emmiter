@@ -1,4 +1,5 @@
-export const arrowHandler = (e, id, listName, list, fn, fn2) => {
+import { h } from "preact";
+export const arrowHandler = (e, id, listName, list, fn, zn2) => {
   e.preventDefault();
   const changeListProp = list.map((t) => {
     if (t.id === id) {
@@ -8,5 +9,5 @@ export const arrowHandler = (e, id, listName, list, fn, fn2) => {
   });
   fn("");
 
-  fn2(changeListProp);
+  zn2(changeListProp);
 };

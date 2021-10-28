@@ -5,7 +5,6 @@ import "./App.css";
 
 class App extends Component {
   render() {
-    // Create the count state.
     const [count, setCount] = useState(0);
     // Update the count (+1 every second).
     useEffect(() => {

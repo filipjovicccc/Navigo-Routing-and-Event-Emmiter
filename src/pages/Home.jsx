@@ -1,7 +1,7 @@
 import { h } from "preact";
 import "./Home.css";
 
-import { useState, useEffect,} from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 
 import Form from "../components/Form";
 

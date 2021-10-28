@@ -1,45 +1,39 @@
 import { h, render } from "preact";
-//  import {html} from "htm/preact"
-// import App from "./App";
 import Home from "./pages/Home";
 import Navigo from "navigo";
 import Navbar from "./components/Navbar";
-// import TrashTodo from "./components/TrashTodo";
+
 import Trash from "./pages/Trash";
 
-const router = new Navigo("/")
+const router = new Navigo("/");
 
 render(
   <div>
     <Navbar />
-     <Home />
-    {/* <Practice /> */} 
+    <Home />
   </div>,
   document.getElementById("root")
 );
 render(
   <div>
-   <h1>Hello from Second</h1>
-  <Trash />
+    <h1>Hello from Second</h1>
+    <Trash />
   </div>,
-document.getElementById("secondRoot")
-)
+  document.getElementById("secondRoot")
+);
 
 router
-.on("", () =>{
-document.getElementById("root").style.display = "";
-document.getElementById("secondRoot").style.display="none";
-
-})
-.resolve()
+  .on("", () => {
+    document.getElementById("root").style.display = "";
+    document.getElementById("secondRoot").style.display = "none";
+  })
+  .resolve();
 router
-.on("/trash", ()=>{
-  document.getElementById("root").style.display = "none";
-  document.getElementById("secondRoot").style.display = "";
-})
-.resolve()
-
-
+  .on("/trash", () => {
+    document.getElementById("root").style.display = "none";
+    document.getElementById("secondRoot").style.display = "";
+  })
+  .resolve();
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
 // Learn more: https://www.snowpack.dev/concepts/hot-module-replacement

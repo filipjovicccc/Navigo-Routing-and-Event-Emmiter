@@ -3,14 +3,12 @@ import { Button } from "../shared/sharedComponents";
 import { arrowHandler } from "../helpers/helpers";
 import EventEmitter from "../helpers/EventEmitter";
 
-function Todo({ text, todo, todos, setTodos, setInputText, id }) {
+function Todo({ text, todo, setInputText, id, todos, setTodos }) {
   const deleteRamp = () => {
-    let filtered = todos.filter((t) => t.id !== todo.id);
-
-    setTodos(filtered);
+    setTodos(todos.filter((t) => t.id !== todo.id));
     EventEmitter.emit("NewLog", {
       text: todo.text,
-      key: todo.id,
+      id: todo.id,
     });
   };
 
