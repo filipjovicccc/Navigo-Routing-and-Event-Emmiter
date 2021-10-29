@@ -102,6 +102,7 @@ function Home() {
               todos={todos}
               text={todo.text}
               setInputText={setInputText}
+              setTodos={setTodos}
             />
           ))}
         </List>
