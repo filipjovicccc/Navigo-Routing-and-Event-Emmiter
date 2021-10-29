@@ -2,36 +2,48 @@ import { h, render } from "preact";
 import Home from "./pages/Home";
 import Navigo from "navigo";
 import Navbar from "./components/Navbar";
+import {Suspense, lazy} from "preact/compat";
 
-import Trash from "./pages/Trash";
 
 const router = new Navigo("/");
 
+
+const Trash = lazy(() => import("./pages/Trash"));
+
 render(
   <div>
+    
     <Navbar />
-    <Home />
+  
   </div>,
-  document.getElementById("root")
+  document.getElementById("navbar")
 );
 render(
   <div>
-    <h1>Hello from Second</h1>
-    <Trash />
+  
+ <Home />
   </div>,
-  document.getElementById("secondRoot")
+  document.getElementById("home")
 );
+
 
 router
   .on("", () => {
-    document.getElementById("root").style.display = "";
-    document.getElementById("secondRoot").style.display = "none";
+    document.getElementById("home").style.display = "";
+    document.getElementById("trash").style.display = "none";
   })
   .resolve();
 router
   .on("/trash", () => {
-    document.getElementById("root").style.display = "none";
-    document.getElementById("secondRoot").style.display = "";
+   
+    document.getElementById("home").style.display = "none";
+    document.getElementById("trash").style.display = "";
+    render(
+    <Suspense  fallback={<p>Loading...</p>}>
+    
+    <Trash />
+   </Suspense>, document.getElementById("trash"))
+   
   })
   .resolve();
 

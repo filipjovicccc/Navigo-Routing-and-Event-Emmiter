@@ -1,18 +1,33 @@
 import { h } from "preact";
-import { useState, useEffect } from "preact/hooks";
+import {useEffect, useState} from "preact/hooks"
 import EventEmitter from "../helpers/EventEmitter";
-import TrashEmitter from "../components/TrashEmitter";
-
-// const LazyLoader = React.lazy(() => import("../components/LazyLoading"));
+import { Button } from "../shared/sharedComponents";
+// import TrashEmitter from "../components/TrashEmitter";
 function Trash() {
+  useEffect(() => {
+    const onNewLog = (eventData) => {
+      setLogs((prevValue) => [...prevValue, eventData]);
+    };
+    const listener = EventEmitter.addListener("NewLog", onNewLog);
+    return () => {
+      listener.remove();
+    };
+  }, []);
+  const [logs, setLogs] = useState([]);
+
+  const example = logs.map((exmp) => exmp);
+
+  const check = example[0];
+
+  const deleteBtn = () => {
+    setLogs(logs.filter((t) => t.id !== check.id));
+  };
+
   return (
     <div>
       <header>
         <h1> Trash page</h1>
-        {/* <Suspense fallback={<p>Loading...</p>}>
-          <LazyLoader />
-        </Suspense> */}
-      </header>
+    </header>
       <div className="wrapper">
         <div className="wrap">
           <div>another component</div>
@@ -20,12 +35,16 @@ function Trash() {
           <hr />
 
           <div className="todo-container">
-            {/* <Suspense fallback={<p>Loading...</p>}>
-            <LazyLoader /> */}
             <ul className="todo-list">
-              <TrashEmitter id={Math.random() * 1000} />
+            {logs.map((log) => (
+        <div className="todo" key={log.key}>
+          {log.text}
+          <Button fn={deleteBtn} customClass="trash-btn" arrow="fas fa-trash" />
+        </div>
+      ))}
+     
+        {/* <TrashEmitter id={Math.random() * 1000} /> */}
             </ul>
-            {/* </Suspense> */}
           </div>
         </div>
       </div>

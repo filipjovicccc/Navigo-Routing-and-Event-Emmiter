@@ -11,7 +11,7 @@ function TrashEmitter(id) {
     return () => {
       listener.remove();
     };
-  });
+  }, []);
   const [logs, setLogs] = useState([]);
 
   const example = logs.map((exmp) => exmp);
