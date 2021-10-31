@@ -2,30 +2,25 @@ import { h, render } from "preact";
 import Home from "./pages/Home";
 import Navigo from "navigo";
 import Navbar from "./components/Navbar";
-import {Suspense, lazy} from "preact/compat";
-
+import { Suspense, lazy } from "preact/compat";
+import TrashEmitter from "./components/TrashEmitter";
 
 const router = new Navigo("/");
-
 
 const Trash = lazy(() => import("./pages/Trash"));
 
 render(
   <div>
-    
     <Navbar />
-  
   </div>,
   document.getElementById("navbar")
 );
 render(
   <div>
-  
- <Home />
+    <Home />
   </div>,
   document.getElementById("home")
 );
-
 
 router
   .on("", () => {
@@ -35,15 +30,16 @@ router
   .resolve();
 router
   .on("/trash", () => {
-   
     document.getElementById("home").style.display = "none";
     document.getElementById("trash").style.display = "";
     render(
-    <Suspense  fallback={<p>Loading...</p>}>
-    
-    <Trash />
-   </Suspense>, document.getElementById("trash"))
-   
+      <Suspense fallback={<p>Loading...</p>}>
+        <Trash>
+          <TrashEmitter />
+        </Trash>
+      </Suspense>,
+      document.getElementById("trash")
+    );
   })
   .resolve();
 

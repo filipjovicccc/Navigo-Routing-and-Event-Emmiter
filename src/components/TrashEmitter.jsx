@@ -2,6 +2,7 @@ import { h } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import EventEmitter from "../helpers/EventEmitter";
 import { Button } from "../shared/sharedComponents";
+import freezer from "../../store";
 function TrashEmitter(id) {
   useEffect(() => {
     const onNewLog = (eventData) => {
@@ -21,6 +22,7 @@ function TrashEmitter(id) {
   const deleteBtn = () => {
     setLogs(logs.filter((t) => t.id !== check.id));
   };
+  console.log(freezer.get().deletedItems);
   return (
     <div>
       {logs.map((log) => (
@@ -33,4 +35,3 @@ function TrashEmitter(id) {
   );
 }
 export default TrashEmitter;
-

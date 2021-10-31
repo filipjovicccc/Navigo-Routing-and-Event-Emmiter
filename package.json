@@ -16,6 +16,7 @@
   "dependencies": {
     "eventemitter3": "^4.0.7",
     "fbemitter": "^3.0.0",
+    "freezer-js": "^0.14.1",
     "navigo": "^8.11.1",
     "preact": "^10.5.15"
   },
