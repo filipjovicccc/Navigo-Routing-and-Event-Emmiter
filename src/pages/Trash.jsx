@@ -3,8 +3,17 @@ import { h } from "preact";
 // import EventEmitter from "../helpers/EventEmitter";
 // import { Button } from "../shared/sharedComponents";
 import TrashEmitter from "../components/TrashEmitter";
+// import freezer from "../store";
 
 function Trash() {
+  // useEffect(() => {
+  //   const lexicalThis = this;
+  //   freezer.on("update", function () {
+  //     lexicalThis.forceUpdate();
+  //   });
+  // }, []);
+
+  // console.log(freezer.get().todos);
   // useEffect(() => {
   //   const onNewLog = (eventData) => {
   //     setLogs((prevValue) => [...prevValue, eventData]);

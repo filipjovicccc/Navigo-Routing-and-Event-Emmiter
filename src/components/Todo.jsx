@@ -5,10 +5,16 @@ import EventEmitter from "../helpers/EventEmitter";
 
 function Todo({ text, todo, setInputText, id, todos, setTodos }) {
   const deleteRamp = () => {
+    const changeStatus = todos.map((t) => {
+      if (t.id === todo.id) return (t.list = "DELETED");
+      return t;
+    });
+    localStorage.setItem("todos", changeStatus);
     setTodos(todos.filter((t) => t.id !== todo.id));
     EventEmitter.emit("NewLog", {
       text: todo.text,
       id: todo.id,
+      list: "DELETED",
     });
   };
 

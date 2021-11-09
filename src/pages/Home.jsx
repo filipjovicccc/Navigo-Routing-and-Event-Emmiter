@@ -26,22 +26,24 @@ function Home() {
         ...todos,
         { text: inputText, id: Math.random() * 1000, list: "DO" },
       ]);
+    localStorage.setItem("todos", JSON.stringify(todos));
+
     setInputText("");
   };
 
-  useEffect(() => {
-    const getLocalTodos = () => {
-      if (localStorage.getItem("todos") === null) {
-        localStorage.setItem("todos", JSON.stringify([]));
-      } else {
-        let todoLocal = JSON.parse(localStorage.getItem("todos"));
-
-        setTodos(todoLocal);
-      }
-    };
-    setTodos();
-    getLocalTodos();
-  }, []);
+  // useEffect(() => {
+  //   const getLocalTodos = () => {
+  //     if (localStorage.getItem("todos") === null) {
+  //       localStorage.setItem("todos", JSON.stringify([]));
+  //     } else {
+  //       let todoLocal = JSON.parse(localStorage.getItem("todos"));
+  //       console.log(todoLocal);
+  //       setTodos(todoLocal);
+  //     }
+  //   };
+  //   setTodos();
+  //   getLocalTodos();
+  // }, []);
 
   useEffect(() => {
     const saveLocalTodos = () => {
@@ -49,6 +51,7 @@ function Home() {
     };
 
     saveLocalTodos();
+    // console.log("todosSavedToLocalStorage");
   }, [todos]);
 
   const filteredList = (list, listName) =>
