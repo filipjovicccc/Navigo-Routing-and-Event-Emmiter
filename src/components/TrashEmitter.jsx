@@ -1,39 +1,30 @@
 import { h } from "preact";
 import { useState, useEffect } from "preact/hooks";
-import EventEmitter from "../helpers/EventEmitter";
 import { Button } from "../shared/sharedComponents";
-import freezer from "../../store";
+const getTodosFromLocalStorage = JSON.parse(localStorage.getItem("todos"));
+
+const filteredList = (list, listName) =>
+  list.filter((todo) => todo.list === listName);
+
 function TrashEmitter(id) {
-  const [logs, setLogs] = useState([]);
+  const [logs, setLogs] = useState(getTodosFromLocalStorage);
 
   useEffect(() => {
-    const getTodosFromLocalStorage = JSON.parse(localStorage.getItem("todos"));
-    // setLogs(getTodosFromLocalStorage);
-    const onNewLog = (eventData) => {
-      setLogs((prevValue) => [...prevValue, eventData]);
-    };
-    const listener = EventEmitter.addListener("NewLog", onNewLog);
-    return () => {
-      listener.remove();
-    };
-  }, [logs, setLogs]); //ubaciti dependecy
+    const filtered = filteredList(getTodosFromLocalStorage, 'DELETED')
+    setLogs(filtered)
+  }, []);
 
-  const example = logs.map((exmp) => exmp);
-  // logs.filter(todo => todo.list === 'DELETED')
-  const getDeleted = logs.filter((exmp) => exmp.list === "DELETED");
-
-  const check = example[0];
-
-  const deleteBtn = () => {
-    setLogs(logs.filter((t) => t.id !== check.id));
+  const deleteBtn = (id) => {
+    setLogs(logs.filter((t) => t.id !== id));
   };
 
+  console.log('[out]from local: ', getTodosFromLocalStorage, '[out]logs: ', logs);
   return (
     <div>
-      {logs.map((log) => (
+      {logs.length !== 0 && logs.map((log) => (
         <div className="todo" key={log.key}>
           {log.text}
-          <Button fn={deleteBtn} customClass="trash-btn" arrow="fas fa-trash" />
+          <Button fn={() => deleteBtn(log.id)} customClass="trash-btn" arrow="fas fa-trash" />
         </div>
       ))}
     </div>

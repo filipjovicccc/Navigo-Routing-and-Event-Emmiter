@@ -31,27 +31,12 @@ function Home() {
     setInputText("");
   };
 
-  // useEffect(() => {
-  //   const getLocalTodos = () => {
-  //     if (localStorage.getItem("todos") === null) {
-  //       localStorage.setItem("todos", JSON.stringify([]));
-  //     } else {
-  //       let todoLocal = JSON.parse(localStorage.getItem("todos"));
-  //       console.log(todoLocal);
-  //       setTodos(todoLocal);
-  //     }
-  //   };
-  //   setTodos();
-  //   getLocalTodos();
-  // }, []);
-
   useEffect(() => {
     const saveLocalTodos = () => {
       localStorage.setItem("todos", JSON.stringify(todos));
     };
 
     saveLocalTodos();
-    // console.log("todosSavedToLocalStorage");
   }, [todos]);
 
   const filteredList = (list, listName) =>
