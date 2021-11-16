@@ -3,7 +3,6 @@ module.exports = {
   mount: {
     public: "/",
     src: "/dist",
-    build: "snowpack build",
   },
   // {
   //   "dir": "./build/dist/stylesheets",
